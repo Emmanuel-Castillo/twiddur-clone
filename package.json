@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.6",
     "autoprefixer": "10.4.15",
     "next": "13.4.16",
     "postcss": "8.4.27",
