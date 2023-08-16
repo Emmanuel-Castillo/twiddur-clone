@@ -17,7 +17,7 @@ function Sidebar() {
         <SidebarLink text={"Bookmarks"} Icon={BookmarkIcon}/>
         <SidebarLink text={"Profile"} Icon={UserIcon}/>
         <SidebarLink text={"More"} Icon={DotsCircleHorizontalIcon}/>
-        <button className='hidden xl:inline bg-[#1d9bf0] rounded-full h-[52px] w-[200px] text-lg font-bold '>Tweet</button>
+        <button className='hidden xl:inline bg-[#1d9bf0] rounded-full h-[52px] w-[200px] text-lg font-bold mt-2'>Tweet</button>
       <div className='absolute bottom-0'>User</div>
       </nav>
     </div>
