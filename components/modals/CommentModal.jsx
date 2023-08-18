@@ -1,3 +1,4 @@
+import { db } from "@/firebase";
 import { closeCommentModal } from "@/redux/modalSlice";
 import {
   CalendarIcon,
@@ -8,14 +9,38 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import { Modal } from "@mui/material";
-import React from "react";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function CommentModal() {
   const tweetDetails = useSelector(state => state.modals.commentTweetDetails)
+  const [comment, setComment] = useState("")
+
+  const userImg  = useSelector(state => state.user.photoUrl)
+  const user = useSelector(state => state.user)
 
   const isOpen = useSelector((state) => state.modals.commentModalOpen);
   const dispatch = useDispatch();
+  const router = useRouter()
+
+  async function sendComment() {
+    const docRef = doc(db,"posts",tweetDetails.id)
+    const commentDetails = {
+      username: user.username,
+      name: user.name,
+      photoUrl: user.photoUrl,
+      comment: comment
+    }
+
+    await updateDoc(docRef, {
+      comments: arrayUnion(commentDetails)
+    })
+
+    dispatch(closeCommentModal())
+    router.push("/" + tweetDetails.id)
+  }
   return (
     <>
       <Modal
@@ -34,6 +59,7 @@ function CommentModal() {
               <img
                 className="w-12 h-12 object-cover rounded-full"
                 src={tweetDetails.photoUrl}
+                alt=""
               />
 
               <div>
@@ -53,13 +79,15 @@ function CommentModal() {
             <div className="flex space-x-3">
               <img
                 className="w-12 h-12 object-cover rounded-full"
-                src="/assets/kylie.png"
+                src={userImg}
+                alt=""
               />
 
               <div className="w-full">
                 <textarea
                   className="w-full bg-transparent resize-none text-lg outline-none"
                   placeholder="Tweet your reply"
+                  onChange={e => setComment(e.target.value)}
                 ></textarea>
 
                 <div className="flex justify-between border-t border-gray-700 pt-4">
@@ -80,7 +108,10 @@ function CommentModal() {
                       <LocationMarkerIcon className="h-[22px] text-[#1d9bf0]" />
                     </div>
                   </div>
-                  <button className="bg-[#1d9bf0] rounded-full px-4 py-1.5 disabled:opacity-50">
+                  <button className="bg-[#1d9bf0] rounded-full px-4 py-1.5 disabled:opacity-50"
+                  disabled={!comment}
+                  onClick={() => sendComment()}
+                  >
                     Tweet
                   </button>
                 </div>

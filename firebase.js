@@ -9,12 +9,12 @@ import {getFirestore} from "firebase/firestore"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAjNzu15k-qbn_anKXJIkjgwuwWVJYkj4o",
-  authDomain: "twitter-clone-ec3ca.firebaseapp.com",
-  projectId: "twitter-clone-ec3ca",
-  storageBucket: "twitter-clone-ec3ca.appspot.com",
-  messagingSenderId: "1021191677872",
-  appId: "1:1021191677872:web:fb6bb4400ab49f1dbe1875"
+  apiKey: "AIzaSyCdIzBmrdgORlAVkSUu1OEUj82qnV2OSEE",
+  authDomain: "twiddur-c4e97.firebaseapp.com",
+  projectId: "twiddur-c4e97",
+  storageBucket: "twiddur-c4e97.appspot.com",
+  messagingSenderId: "1018301474648",
+  appId: "1:1018301474648:web:3e728c126079430d1da72d"
 };
 
 // Initialize Firebase

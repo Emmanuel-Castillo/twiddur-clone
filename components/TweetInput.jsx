@@ -1,4 +1,5 @@
 import { db } from "@/firebase";
+import { openLoginModal } from "@/redux/modalSlice";
 import {
   CalendarIcon,
   ChartBarIcon,
@@ -8,13 +9,20 @@ import {
 } from "@heroicons/react/outline";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function TweetInput() {
   const [text, setText] = useState("");
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch()
 
   async function sendTweet() {
+
+    if(!user.username){
+      dispatch(openLoginModal())
+      return
+    }
+    
     const docRef = await addDoc(collection(db, "posts"), {
       username: user.username,
       name: user.name,
@@ -31,7 +39,8 @@ function TweetInput() {
     <div className="flex space-x-3 p-3 border-b border-gray-700">
       <img
         className="w-11 h-11 rounded-full object-cover "
-        src="/assets/kylie.png"
+        src={user.photoUrl || "/assets/twitter-logo.png"}
+        alt=""
       />
 
       <div className="w-full">

@@ -56,6 +56,7 @@ function Trending() {
             <img
               src="/assets/bragg.png"
               className="w-11 h-11 object-cover rounded-full"
+              alt=""
             />
             <div>
               <div className="flex space-x-1">
@@ -73,6 +74,7 @@ function Trending() {
             <img
               src="/assets/bragg.png"
               className="w-11 h-11 object-cover rounded-full"
+              alt=""
             />
             <div>
               <div className="flex space-x-1">
@@ -90,6 +92,7 @@ function Trending() {
             <img
               src="/assets/bragg.png"
               className="w-11 h-11 object-cover rounded-full"
+              alt=""
             />
             <div>
               <div className="flex space-x-1">
