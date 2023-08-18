@@ -82,6 +82,7 @@ function Tweet({ data, id }) {
         timestamp={data?.timestamp?.toDate()}
         text={data?.tweet}
         photoUrl={data?.photoUrl}
+        image={data?.image}
       />
       <div className="p-3 ml-16 flex space-x-14 text-gray-500">
         <div
@@ -102,6 +103,7 @@ function Tweet({ data, id }) {
                 id: id,
                 photoUrl: data?.photoUrl,
                 tweet: data?.tweet,
+                image: data?.image
               })
             );
             dispatch(openCommentModal());
@@ -130,7 +132,7 @@ function Tweet({ data, id }) {
   );
 }
 
-export function TweetHeader({ username, name, timestamp, text, photoUrl }) {
+export function TweetHeader({ username, name, timestamp, text, photoUrl, image }) {
   return (
     <div className="flex space-x-3 p-3 border-gray-700">
       <img
@@ -147,6 +149,8 @@ export function TweetHeader({ username, name, timestamp, text, photoUrl }) {
         </div>
 
         <span>{text}</span>
+
+        {image && <img src={image} alt="" className="object-cover rounded-md mt-3 max-h-80 border border-gray-700"/>}
       </div>
     </div>
   );

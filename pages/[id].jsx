@@ -21,6 +21,7 @@ export async function getServerSideProps(context) {
     text: data.tweet,
     comments: data.comments || null,
     timestamp: JSON.stringify(data.timestamp.toDate()),
+    image: data.image || null,
   };
 
   return {
@@ -63,6 +64,8 @@ border-b border-gray-700 sticky top-0 z-50 flex space-x-1"
               </div>
 
               <span className="text-2xl">{tweetData?.text}</span>
+
+              {tweetData.image && <img src={tweetData.image} alt="" className="object-cover rounded-md mt-3 max-h-80 border border-gray-700"/>}
             </div>
           </div>
         </div>
